@@ -1,6 +1,6 @@
 #!/bin/sh
 mountpoint -q /proc/sys/fs/binfmt_misc || \
-    mount -t binfmt_misc binfmt /proc/sys/fs/binfmt_misc || return 1
+    mount -t binfmt_misc binfmt /proc/sys/fs/binfmt_misc || exit 1
 
 for files in /proc/sys/fs/binfmt_misc/*; do
     [ "$files" = /proc/sys/fs/binfmt_misc/register ] && continue
@@ -13,7 +13,7 @@ for path in /usr/lib/binfmt.d /etc/binfmt.d /run/binfmt.d; do
     [ -z "$(ls $path)" ] && continue
     grep -h "^:" $path/* | \
         while read -r line; do
-            printf "%s" "$line" > /proc/sys/fs/binfmt_misc/register || return 1
+            printf "%s" "$line" > /proc/sys/fs/binfmt_misc/register || exit 1
         done
 done
-return 0
+exit 0
