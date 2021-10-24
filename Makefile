@@ -1,9 +1,11 @@
-PREFIX     ?= /usr
-SYSCONFDIR ?= /etc
-BINDIR     ?= $(PREFIX)/bin
-DATADIR    ?= $(PREFIX)/share
-MANDIR     ?= $(DATADIR)/man/man8
-DINITDIR   ?= $(SYSCONFDIR)/dinit.d
+PREFIX      ?= /usr
+SYSCONFDIR  ?= /etc
+BINDIR      ?= $(PREFIX)/bin
+DATADIR     ?= $(PREFIX)/share
+LIBDIR      ?= $(PREFIX)/lib
+MANDIR      ?= $(DATADIR)/man/man8
+DINITDIR    ?= $(SYSCONFDIR)/dinit.d
+DINITLIBDIR ?= $(LIBDIR)/dinit.d
 
 BIN_PROGRAMS = modules-load
 
@@ -80,25 +82,22 @@ install:
 	install -d $(DESTDIR)$(DATADIR)
 	install -d $(DESTDIR)$(SYSCONFDIR)
 	install -d $(DESTDIR)$(MANDIR)
-	install -d $(DESTDIR)$(DINITDIR)
-	install -d $(DESTDIR)$(DINITDIR)/config
-	install -d $(DESTDIR)$(DINITDIR)/scripts
+	install -d $(DESTDIR)$(DINITLIBDIR)
+	install -d $(DESTDIR)$(DINITLIBDIR)/scripts
 	install -d $(DESTDIR)$(DINITDIR)/boot.d
-	install -d $(DESTDIR)$(DINITDIR)/mount.d
+	install -d $(DESTDIR)$(DINITLIBDIR)/mount.d
 	# placeholder
-	touch $(DESTDIR)$(DINITDIR)/mount.d/.KEEP
+	touch $(DESTDIR)$(DINITLIBDIR)/mount.d/.KEEP
 	# default services
 	ln -sf ../loginready $(DESTDIR)$(DINITDIR)/boot.d/loginready
 	ln -sf ../misc $(DESTDIR)$(DINITDIR)/boot.d/misc
-	ln -sf ../mount $(DESTDIR)$(DINITDIR)/boot.d/mount
-	ln -sf ../setup $(DESTDIR)$(DINITDIR)/boot.d/setup
 	# config files
 	for conf in $(CONF_FILES); do \
-		install -m 644 config/$$conf $(DESTDIR)$(DINITDIR)/config; \
+		install -m 644 config/$$conf $(DESTDIR)$(DINITDIR); \
 	done
 	# scripts
 	for script in $(SCRIPTS); do \
-		install -m 755 scripts/$$script $(DESTDIR)$(DINITDIR)/scripts; \
+		install -m 755 scripts/$$script $(DESTDIR)$(DINITLIBDIR)/scripts; \
 	done
 	# programs
 	for prog in $(BIN_PROGRAMS); do \
@@ -110,5 +109,5 @@ install:
 	done
 	# services
 	for srv in $(SERVICES); do \
-		install -m 644 services/$$srv $(DESTDIR)$(DINITDIR); \
+		install -m 644 services/$$srv $(DESTDIR)$(DINITLIBDIR); \
 	done

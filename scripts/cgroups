@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[ -r /etc/dinit.d/config/cgroups.conf ] && . /etc/dinit.d/config/groups.conf
+[ -r /etc/dinit.d/cgroups.conf ] && . /etc/dinit.d/groups.conf
 
 CGROUP_OPTS=nodev,noexec,nosuid
 
@@ -25,7 +25,7 @@ cgroup1_base() {
 
     if ! mountpoint -q /sys/fs/cgroup/openrc; then
         local agent
-        agent="/etc/dinit.d/scripts/cgroup-release-agent.sh"
+        agent="/usr/lib/dinit.d/scripts/cgroup-release-agent.sh"
         mkdir /sys/fs/cgroup/openrc
         mount -n -t cgroup -o none,${CGROUP_OPTS},name=openrc,release_agent="$agent" openrc /sys/fs/cgroup/openrc
         printf 1 > /sys/fs/cgroup/openrc/notify_on_release

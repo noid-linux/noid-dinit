@@ -1,6 +1,6 @@
 type         = scripted
-command      = /etc/dinit.d/scripts/random-seed load
-stop-command = /etc/dinit.d/scripts/random-seed save
+command      = /usr/lib/dinit.d/scripts/random-seed load
+stop-command = /usr/lib/dinit.d/scripts/random-seed save
 restart      = false
 waits-for    = pseudofs
 waits-for    = udev-settle
