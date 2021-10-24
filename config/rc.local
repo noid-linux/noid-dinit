@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# /etc/rc.local -- rc.local for Artix Linux
+#
+
+for file in /etc/local.d/*.start; do
+    sh "$file"
+done
+
+# Enter your custom commands here.

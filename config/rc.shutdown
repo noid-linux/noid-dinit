@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# /etc/rc.shutdown -- rc.shutdown for Artix Linux
+#
+
+for file in /etc/local.d/*.shutdown; do
+    sh "$file"
+done
+
+# Enter your custom commands here.

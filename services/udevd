@@ -1,0 +1,9 @@
+# Note that this udevd is experimental. We might use the dinit original
+# version.
+
+type            = process
+command         = /usr/bin/udevd
+logfile         = /run/udevd.log
+smooth-recovery = yes
+socket-listen   = /var/run/udev/control
+waits-for       = pseudofs

@@ -1,0 +1,5 @@
+Artix's dinit stage 1.
+
+Adapted from s6-scripts, runit-rc, Chimera Linux, and dinit's own configuration.
+
+TODO: Remove cgroup code, it's messy, and it's on dinit's plan post-1.0.

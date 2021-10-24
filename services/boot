@@ -1,0 +1,13 @@
+# The primary service
+
+type = internal
+
+depends-ms = tty1
+depends-ms = tty2
+depends-ms = tty3
+depends-ms = tty4
+depends-ms = tty5
+depends-ms = tty6
+
+waits-for.d = boot.d
+waits-for = rclocal
