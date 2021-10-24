@@ -84,13 +84,13 @@ install:
 	install -d $(DESTDIR)$(MANDIR)
 	install -d $(DESTDIR)$(DINITLIBDIR)
 	install -d $(DESTDIR)$(DINITLIBDIR)/scripts
-	install -d $(DESTDIR)$(DINITDIR)/boot.d
+	install -d $(DESTDIR)$(DINITLIBDIR)/boot.d
 	install -d $(DESTDIR)$(DINITLIBDIR)/mount.d
 	# placeholder
 	touch $(DESTDIR)$(DINITLIBDIR)/mount.d/.KEEP
 	# default services
-	ln -sf ../loginready $(DESTDIR)$(DINITDIR)/boot.d/loginready
-	ln -sf ../misc $(DESTDIR)$(DINITDIR)/boot.d/misc
+	ln -sf ../loginready $(DESTDIR)$(DINITLIBDIR)/boot.d/loginready
+	ln -sf ../misc $(DESTDIR)$(DINITLIBDIR)/boot.d/misc
 	# config files
 	for conf in $(CONF_FILES); do \
 		install -m 644 config/$$conf $(DESTDIR)$(DINITDIR); \

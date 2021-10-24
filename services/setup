@@ -1,7 +1,6 @@
 type      = internal
 restart   = false
 waits-for = cleanup
-waits-for = dmesg
 waits-for = binfmt
 waits-for = locale
 waits-for = net-lo
