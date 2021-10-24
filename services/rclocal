@@ -1,4 +1,4 @@
 type         = scripted
-command      = sh /etc/dinit.d/config/rc.local
-stop-command = sh /etc/dinit.d/config/rc.shutdown
+command      = /bin/sh /etc/dinit.d/config/rc.local
+stop-command = /bin/sh /etc/dinit.d/config/rc.shutdown
 restart      = false

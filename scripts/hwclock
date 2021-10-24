@@ -1,5 +1,5 @@
 #!/bin/sh
-. /etc/rc/hwclock.conf
+. /etc/dinit.d/config/hwclock.conf
 
 HARDWARECLOCK=${HARDWARECLOCK:-UTC}
 
