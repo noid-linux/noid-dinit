@@ -1,3 +1,4 @@
 type      = internal
 restart   = false
 waits-for = setup
+waits-for = mount
