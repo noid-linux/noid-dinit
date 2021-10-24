@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[ -r /etc/dinit.d/cgroups.conf ] && . /etc/dinit.d/groups.conf
+[ -r /etc/dinit.d/cgroups.conf ] && . /etc/dinit.d/cgroups.conf
 
 CGROUP_OPTS=nodev,noexec,nosuid
 
