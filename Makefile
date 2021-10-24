@@ -82,6 +82,7 @@ install:
 	install -d $(DESTDIR)$(DATADIR)
 	install -d $(DESTDIR)$(SYSCONFDIR)
 	install -d $(DESTDIR)$(MANDIR)
+	install -d $(DESTDIR)$(DINITDIR)
 	install -d $(DESTDIR)$(DINITLIBDIR)
 	install -d $(DESTDIR)$(DINITLIBDIR)/scripts
 	install -d $(DESTDIR)$(DINITLIBDIR)/boot.d
