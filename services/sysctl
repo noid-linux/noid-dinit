@@ -1,0 +1,3 @@
+type    = scripted
+command = /usr/bin/sysctl --system
+restart = false
