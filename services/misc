@@ -4,4 +4,3 @@ waits-for = hostname
 waits-for = hwclock
 waits-for = tmpfiles-dev
 waits-for = modules
-waits-for = network
