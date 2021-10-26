@@ -1,9 +1,8 @@
-# Note that this udevd is experimental. We might use the dinit original
-# version.
-
-type            = process
-command         = /usr/bin/udevd
+type            = scripted
+command         = /usr/bin/udevd --daemon
+stop-command    = /bin/udevadm control -e
 logfile         = /run/udevd.log
-smooth-recovery = yes
-socket-listen   = /var/run/udev/control
-waits-for       = pseudofs
+restart         = false
+depends-on      = pseudofs
+waits-for       = kmod-static-nodes
+waits-for       = tmpfiles-dev
