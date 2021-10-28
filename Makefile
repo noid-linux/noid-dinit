@@ -1,6 +1,7 @@
 PREFIX     ?= /usr
 SYSCONFDIR ?= /etc
 BINDIR     ?= $(PREFIX)/bin
+LIBDIR     ?= $(PREFIX)/lib
 DATADIR    ?= $(PREFIX)/share
 MANDIR     ?= $(DATADIR)/man/man8
 DINITDIR   ?= $(SYSCONFDIR)/dinit.d
@@ -110,3 +111,5 @@ install:
 	for srv in $(SERVICES); do \
 		install -m 644 services/$$srv $(DESTDIR)$(DINITDIR); \
 	done
+	# misc
+	install -Dm644 misc/50-default.conf $(DESTDIR)$(LIBDIR)/sysctl.d/50-default.conf
