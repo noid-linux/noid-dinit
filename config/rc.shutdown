@@ -1,10 +1,12 @@
 #!/bin/sh
 
-# /etc/rc.shutdown -- rc.shutdown for Artix Linux
+# /etc/dinit.d/config/rc.shutdown -- rc.shutdown for Artix Linux
 #
 
-for file in /etc/local.d/*.shutdown; do
-    sh "$file"
-done
+if [ -d /etc/local.d ]; then
+    for file in /etc/local.d/*.shutdown; do
+        sh "$file"
+    done
+fi
 
 # Enter your custom commands here.

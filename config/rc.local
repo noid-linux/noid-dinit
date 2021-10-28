@@ -1,10 +1,12 @@
 #!/bin/sh
 
-# /etc/rc.local -- rc.local for Artix Linux
+# /etc/dinit.d/config/rc.local -- rc.local for Artix Linux
 #
 
-for file in /etc/local.d/*.start; do
-    sh "$file"
-done
+if [ -d /etc/local.d ]; then
+    for file in /etc/local.d/*.start; do
+        sh "$file"
+    done
+fi
 
 # Enter your custom commands here.
