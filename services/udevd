@@ -1,7 +1,6 @@
 type            = scripted
 command         = /usr/bin/udevd --daemon
 stop-command    = /bin/udevadm control -e
-logfile         = /run/udevd.log
 restart         = false
 depends-on      = pseudofs
 waits-for       = kmod-static-nodes

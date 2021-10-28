@@ -1,6 +1,5 @@
 type       = scripted
 command    = /etc/dinit.d/scripts/hwclock
-logfile    = /run/hwclock.log
 restart    = false
 depends-on = udevd
 depends-on = pseudofs
