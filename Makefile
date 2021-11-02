@@ -1,10 +1,11 @@
-PREFIX     ?= /usr
-SYSCONFDIR ?= /etc
-BINDIR     ?= $(PREFIX)/bin
-LIBDIR     ?= $(PREFIX)/lib
-DATADIR    ?= $(PREFIX)/share
-MANDIR     ?= $(DATADIR)/man/man8
-DINITDIR   ?= $(SYSCONFDIR)/dinit.d
+PREFIX        ?= /usr
+SYSCONFDIR    ?= /etc
+LOCALSTATEDIR ?= /var
+BINDIR        ?= $(PREFIX)/bin
+LIBDIR        ?= $(PREFIX)/lib
+DATADIR       ?= $(PREFIX)/share
+MANDIR        ?= $(DATADIR)/man/man8
+DINITDIR      ?= $(SYSCONFDIR)/dinit.d
 
 BIN_PROGRAMS = modules-load
 
@@ -88,6 +89,7 @@ install:
 	install -d $(DESTDIR)$(DINITDIR)/scripts
 	install -d $(DESTDIR)$(DINITDIR)/boot.d
 	install -d $(DESTDIR)$(DINITDIR)/mount.d
+	install -d $(DESTDIR)$(LOCALSTATEDIR)/log/dinit
 	# placeholder
 	touch $(DESTDIR)$(DINITDIR)/mount.d/.KEEP
 	touch $(DESTDIR)$(DINITDIR)/boot.d/.KEEP

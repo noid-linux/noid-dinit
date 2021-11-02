@@ -8,7 +8,7 @@ depends-ms = tty3
 depends-ms = tty4
 depends-ms = tty5
 depends-ms = tty6
-logfile    = /run/dinit.d/boot.log
+logfile    = /var/log/dinit/boot.log
 
 waits-for = rclocal
 waits-for = loginready

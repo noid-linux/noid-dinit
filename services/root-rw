@@ -2,7 +2,7 @@ type    = scripted
 command = /bin/mount -o remount,rw /
 restart = false
 options = starts-rwfs
-logfile = /run/rootrw.log
+logfile = /var/log/dinit/rootrw.log
 
 depends-on = mount-all
 waits-for  = hwclock
