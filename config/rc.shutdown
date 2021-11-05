@@ -4,7 +4,7 @@
 #
 
 if [ -d /etc/local.d ]; then
-    for file in /etc/local.d/*.shutdown; do
+    for file in /etc/local.d/*.stop; do
         sh "$file"
     done
 fi
