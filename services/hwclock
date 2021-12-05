@@ -1,6 +1,6 @@
-type       = scripted
-command    = /etc/dinit.d/scripts/hwclock start
-command    = /etc/dinit.d/scripts/hwclock stop
-restart    = false
-depends-on = udevd
-depends-on = pseudofs
+type         = scripted
+command      = /etc/dinit.d/scripts/hwclock start
+stop-command = /etc/dinit.d/scripts/hwclock stop
+restart      = false
+depends-on   = udevd
+depends-on   = pseudofs
