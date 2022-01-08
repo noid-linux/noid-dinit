@@ -10,3 +10,4 @@ waits-for = sysctl
 waits-for = sysusers
 waits-for = tmpfiles-setup
 waits-for = vconsole
+waits-for.d = live.d

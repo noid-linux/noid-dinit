@@ -99,11 +99,13 @@ install:
 	install -d $(DESTDIR)$(DINITDIR)/scripts
 	install -d $(DESTDIR)$(DINITDIR)/boot.d
 	install -d $(DESTDIR)$(DINITDIR)/mount.d
+	install -d $(DESTDIR)$(DINITDIR)/live.d
 	install -d $(DESTDIR)$(DINITDIR)/getty.d
 	install -d $(DESTDIR)$(LOCALSTATEDIR)/log/dinit
 	# placeholder
 	touch $(DESTDIR)$(DINITDIR)/mount.d/.KEEP
 	touch $(DESTDIR)$(DINITDIR)/boot.d/.KEEP
+	touch $(DESTDIR)$(DINITDIR)/live.d/.KEEP
 	# config files
 	for conf in $(CONF_FILES); do \
 		install -m 644 config/$$conf $(DESTDIR)$(DINITDIR)/config; \
