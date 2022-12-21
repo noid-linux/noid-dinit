@@ -1,4 +1,5 @@
-type      = scripted
-command   = /usr/bin/tmpfiles --exclude-prefix=/dev --create --remove --boot
-restart   = false
-waits-for = udev-settle
+type       = scripted
+command    = /usr/bin/tmpfiles --exclude-prefix=/dev --create --remove --boot
+restart    = false
+after      = udev-settle
+depends-on = root-rw
