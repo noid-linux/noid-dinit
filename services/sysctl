@@ -1,4 +1,5 @@
 type      = scripted
 command   = /usr/bin/sysctl --system
 restart   = false
-after     = pseudofs
+after     = udevd
+after     = mount-all
