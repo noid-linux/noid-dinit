@@ -1,7 +1,7 @@
-type            = scripted
-command         = /usr/bin/udevd --daemon
-stop-command    = /bin/udevadm control -e
-restart         = false
-depends-on      = pseudofs
-waits-for       = kmod-static-nodes
-waits-for       = tmpfiles-dev
+type            = process
+command         = /etc/dinit.d/scripts/udevd
+before          = setup
+depends-on      = udev-early
+depends-ms      = udev-settle
+restart         = true
+smooth-recovery = true

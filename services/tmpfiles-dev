@@ -1,4 +1,4 @@
 type      = scripted
 command   = /usr/bin/etmpfiles --prefix=/dev --create --boot
 restart   = false
-waits-for = kmod-static-nodes
+after     = kmod-static-nodes

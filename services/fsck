@@ -4,5 +4,5 @@ restart       = false
 options       = starts-on-console start-interruptible skippable
 start-timeout = 0
 depends-on    = udevd
-waits-for     = udev-settle
+after         = udev-settle
 waits-for.d   = mount.d

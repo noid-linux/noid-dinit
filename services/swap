@@ -4,4 +4,4 @@ stop-command = /sbin/swapoff -a
 depends-on   = root-rw
 depends-on   = udevd
 depends-on   = mount-all
-waits-for    = udev-settle
+after        = udev-settle

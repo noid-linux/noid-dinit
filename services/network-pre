@@ -1,8 +1,8 @@
-# For services that need network, depend on this.
+# Network services should depend on this internal service.
 # Run network services before this service.
 
 type       = internal
 restart    = false
-depends-on = network-pre
+depends-on = rclocal
 after      = pseudofs
 after      = net-lo

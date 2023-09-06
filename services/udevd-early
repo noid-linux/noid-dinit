@@ -1,0 +1,9 @@
+type            = scripted
+command         = /usr/bin/udevd --daemon
+stop-command    = /usr/bin/sh -c "/usr/bin/udevadm control -e || :"
+restart         = false
+depends-on      = pseudofs
+depends-on      = tmpfs
+depends-on      = cgroups
+depends-on      = tmpfiles-dev
+waits-for       = kmod-static-nodes

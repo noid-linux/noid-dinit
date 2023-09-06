@@ -5,6 +5,7 @@ type = internal
 depends-ms = getty
 logfile    = /var/log/dinit/boot.log
 
-waits-for = rclocal
-waits-for = loginready
+depends-on = rclocal
+depends-on = loginready
+depends-on = network
 waits-for.d = boot.d

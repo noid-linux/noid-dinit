@@ -1,4 +1,4 @@
 type      = scripted
 command   = /usr/bin/esysusers
 restart   = false
-waits-for = root-rw
+after     = root-rw

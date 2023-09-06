@@ -40,6 +40,7 @@ SERVICES = \
 	mount-all \
 	net-lo \
 	network \
+	network-pre \
 	pseudofs \
 	random-seed \
 	rclocal \
@@ -76,6 +77,7 @@ SCRIPTS = \
 	network \
 	pseudofs \
 	random-seed \
+	udevd \
 	vconsole
 
 TTY_SERVICES = \
