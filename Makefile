@@ -61,6 +61,7 @@ SERVICES = \
 	tty5 \
 	tty6 \
 	udevd \
+	udevd-early \
 	udev-settle \
 	udev-trigger \
 	vconsole
