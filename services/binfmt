@@ -1,4 +1,4 @@
 type       = scripted
-command    = /etc/dinit.d/scripts/binfmt
+command    = /usr/lib/dinit/binfmt
 depends-on = pseudofs
 restart    = false

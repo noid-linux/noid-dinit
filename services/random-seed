@@ -1,5 +1,5 @@
 type         = scripted
-command      = /usr/bin/seedrng
+command      = /usr/lib/dinit/seedrng
 restart      = false
 after        = pseudofs
 after        = udev-settle

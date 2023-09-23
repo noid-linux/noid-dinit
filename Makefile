@@ -5,9 +5,10 @@ BINDIR        ?= $(PREFIX)/bin
 LIBDIR        ?= $(PREFIX)/lib
 DATADIR       ?= $(PREFIX)/share
 MANDIR        ?= $(DATADIR)/man/man8
-DINITDIR      ?= $(SYSCONFDIR)/dinit.d
+DINITSRVDIR   ?= $(LIBDIR)/dinit.d
+DINITCNFDIR   ?= $(SYSCONFDIR)/dinit.d
 
-BIN_PROGRAMS = modules-load
+BIN_PROGRAMS = modules-load seedrng
 
 MANPAGES = modules-load.8
 
@@ -75,9 +76,7 @@ SCRIPTS = \
 	dmesg \
 	hostname \
 	hwclock \
-	network \
 	pseudofs \
-	random-seed \
 	udevd \
 	vconsole
 
@@ -104,29 +103,29 @@ install:
 	install -d $(DESTDIR)$(DATADIR)
 	install -d $(DESTDIR)$(SYSCONFDIR)
 	install -d $(DESTDIR)$(MANDIR)
-	install -d $(DESTDIR)$(DINITDIR)
-	install -d $(DESTDIR)$(DINITDIR)/config
-	install -d $(DESTDIR)$(DINITDIR)/scripts
-	install -d $(DESTDIR)$(DINITDIR)/boot.d
-	install -d $(DESTDIR)$(DINITDIR)/mount.d
-	install -d $(DESTDIR)$(DINITDIR)/live.d
-	install -d $(DESTDIR)$(DINITDIR)/getty.d
+	install -d $(DESTDIR)$(DINITSRVDIR)
+	install -d $(DESTDIR)$(DINITCNFDIR)/config
+	install -d $(DESTDIR)$(LIBDIR)/dinit
+	install -d $(DESTDIR)$(DINITCNFDIR)/boot.d
+	install -d $(DESTDIR)$(DINITCNFDIR)/mount.d
+	install -d $(DESTDIR)$(DINITCNFDIR)/live.d
+	install -d $(DESTDIR)$(DINITSRVDIR)/getty.d
 	install -d $(DESTDIR)$(LOCALSTATEDIR)/log/dinit
 	# placeholder
-	touch $(DESTDIR)$(DINITDIR)/mount.d/.KEEP
-	touch $(DESTDIR)$(DINITDIR)/boot.d/.KEEP
-	touch $(DESTDIR)$(DINITDIR)/live.d/.KEEP
+	touch $(DESTDIR)$(DINITCNFDIR)/mount.d/.KEEP
+	touch $(DESTDIR)$(DINITCNFDIR)/boot.d/.KEEP
+	touch $(DESTDIR)$(DINITCNFDIR)/live.d/.KEEP
 	# config files
 	for conf in $(CONF_FILES); do \
-		install -m 644 config/$$conf $(DESTDIR)$(DINITDIR)/config; \
+		install -m 644 config/$$conf $(DESTDIR)$(DINITCNFDIR)/config; \
 	done
 	# scripts
 	for script in $(SCRIPTS); do \
-		install -m 755 scripts/$$script $(DESTDIR)$(DINITDIR)/scripts; \
+		install -m 755 scripts/$$script $(DESTDIR)$(LIBDIR)/dinit; \
 	done
 	# programs
 	for prog in $(BIN_PROGRAMS); do \
-		install -m 755 bin/$$prog $(DESTDIR)$(BINDIR); \
+		install -m 755 bin/$$prog $(DESTDIR)$(LIBDIR)/dinit; \
 	done
 	# manpages
 	for man in $(MANPAGES); do \
@@ -134,14 +133,13 @@ install:
 	done
 	# services
 	for srv in $(SERVICES); do \
-		install -m 644 services/$$srv $(DESTDIR)$(DINITDIR); \
+		install -m 644 services/$$srv $(DESTDIR)$(DINITSRVDIR); \
 	done
 	# getty services
 	for srv in $(TTY_SERVICES); do \
-		ln -s ../$$srv $(DESTDIR)$(DINITDIR)/getty.d; \
+		ln -s ../$$srv $(DESTDIR)$(DINITSRVDIR)/getty.d; \
 	done
 	# misc
-	install -Dm755 bin/seedrng          $(DESTDIR)$(BINDIR)/seedrng
 	install -Dm644 misc/50-default.conf $(DESTDIR)$(LIBDIR)/sysctl.d/50-default.conf
 	install -Dm644 misc/dinit.logrotate $(DESTDIR)$(SYSCONFDIR)/logrotate.d/dinit
 
