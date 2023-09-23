@@ -6,4 +6,4 @@ depends-ms = getty
 
 waits-for   = rclocal
 waits-for   = loginready
-waits-for.d = boot.d
+waits-for.d = /etc/dinit.d/boot.d

@@ -5,4 +5,4 @@ options       = starts-on-console start-interruptible skippable
 start-timeout = 0
 depends-on    = udevd
 after         = udev-settle
-waits-for.d   = mount.d
+waits-for.d   = /etc/dinit.d/mount.d
