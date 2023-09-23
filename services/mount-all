@@ -1,5 +1,5 @@
 type         = scripted
 command      = /usr/bin/mount -a -t nonfs,nonfs4,nosmbfs,nocifs,nocodafs,noncpfs,noshfs,nofuse,nofuseblk,noglusterfs,nodavfs,nofuse.glusterfs -O no_netdev
 restart      = false
-depends-on   = fsck
+after        = fsck
 waits-for.d  = /etc/dinit.d/mount.d
