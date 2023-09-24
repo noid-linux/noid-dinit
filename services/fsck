@@ -1,5 +1,5 @@
 type          = scripted
-command       = /sbin/fsck -A -R -C -t noopts=_netdev
+command       = /sbin/fsck -A -R -C -a -t noopts=_netdev
 restart       = false
 options       = starts-on-console start-interruptible skippable
 start-timeout = 0
