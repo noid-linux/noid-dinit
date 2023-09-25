@@ -34,8 +34,8 @@ PREV_CONSOLES=
 ACTIVE_SERVICES=$(
     for tty in $ACTIVE_CONSOLES; do
         tty=${tty##*/}
-        [ -f /etc/dinit.d/agetty-$tty ] || continue
-        dinitctl add-dep milestone agetty agetty-$tty > /dev/null
+        [ -f /etc/dinit.d/$tty ] || continue
+        dinitctl add-dep milestone getty $tty > /dev/null
         echo $tty
     done
 )
@@ -48,7 +48,7 @@ for otty in $PREV_CONSOLES; do
             break
         fi
     done
-    [ -n "$otty" ] && dinitctl rm-dep milestone agetty agetty-$otty > /dev/null
+    [ -n "$otty" ] && dinitctl rm-dep milestone getty $otty > /dev/null
 done
 
 rm -f /run/agetty-active
@@ -56,7 +56,7 @@ rm -f /run/agetty-active
 # wake whichever services newly got links and generate a new active list
 for tty in $ACTIVE_SERVICES; do
     echo $tty >> /run/agetty-active
-    dinitctl wake agetty-$tty > /dev/null &
+    dinitctl wake $tty > /dev/null &
 done
 
 wait || :
