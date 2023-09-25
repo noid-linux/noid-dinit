@@ -13,14 +13,15 @@ BIN_PROGRAMS = modules-load seedrng
 MANPAGES = modules-load.8
 
 CONF_FILES = \
+	agetty-default.conf \
+	console.conf \
 	cgroups.conf \
 	hwclock.conf \
 	rc.local \
 	rc.shutdown
 
 SERVICEDIR = boot.d \
-	mount.d \
-	getty.d
+	mount.d
 
 SERVICES = \
 	binfmt \
@@ -55,12 +56,6 @@ SERVICES = \
 	tmpfiles-dev \
 	tmpfiles-setup \
 	tmpfs \
-	tty1 \
-	tty2 \
-	tty3 \
-	tty4 \
-	tty5 \
-	tty6 \
 	udevd \
 	udevd-early \
 	udev-settle \
@@ -69,6 +64,8 @@ SERVICES = \
 
 
 SCRIPTS = \
+	agetty \
+	agetty-default \
 	binfmt \
 	cgroup-release-agent.sh \
 	cgroups \
@@ -109,7 +106,6 @@ install:
 	install -d $(DESTDIR)$(DINITCNFDIR)/boot.d
 	install -d $(DESTDIR)$(DINITCNFDIR)/mount.d
 	install -d $(DESTDIR)$(DINITCNFDIR)/live.d
-	install -d $(DESTDIR)$(DINITSRVDIR)/getty.d
 	install -d $(DESTDIR)$(LOCALSTATEDIR)/log/dinit
 	# placeholder
 	touch $(DESTDIR)$(DINITCNFDIR)/mount.d/.KEEP
@@ -137,7 +133,7 @@ install:
 	done
 	# getty services
 	for srv in $(TTY_SERVICES); do \
-		ln -s ../$$srv $(DESTDIR)$(DINITSRVDIR)/getty.d; \
+		install -m 644 services/$$srv $(DESTDIR)$(DINITCNFDIR); \
 	done
 	# misc
 	install -Dm644 misc/50-default.conf $(DESTDIR)$(LIBDIR)/sysctl.d/50-default.conf

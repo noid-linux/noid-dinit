@@ -1,5 +1,5 @@
 type            = process
-command         = /sbin/agetty tty3 38400 linux
+command         = /usr/lib/dinit/agetty-default tty3
 restart         = true
 depends-on      = loginready
 termsignal      = HUP
