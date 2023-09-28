@@ -1,5 +1,5 @@
 type          = scripted
-command       = /sbin/fsck -A -R -C -a -t noopts=_netdev
+command       = /usr/lib/dinit/fsck
 restart       = false
 options       = starts-on-console start-interruptible skippable
 start-timeout = 0

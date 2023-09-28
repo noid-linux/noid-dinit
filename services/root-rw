@@ -4,6 +4,6 @@ restart = false
 options = starts-rwfs
 logfile = /var/log/dinit/rootrw.log
 
-depends-on = mount-all
+waits-for  = mount-all
 after      = hwclock
 after      = fsck

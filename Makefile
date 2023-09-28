@@ -71,6 +71,7 @@ SCRIPTS = \
 	cgroups \
 	cleanup \
 	dmesg \
+	fsck \
 	hostname \
 	hwclock \
 	pseudofs \
