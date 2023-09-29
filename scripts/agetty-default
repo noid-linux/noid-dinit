@@ -5,23 +5,22 @@
 # License: BSD-2-Clause
 
 GETTY="$1"
-shift
+[ -n "$GETTY" ] && shift
 
 [ -z "$GETTY" ] && echo "$0: no tty given"
 
-[ ! -c "$GETTY" ] && echo "$0: /dev/$GETTY is not a terminal"
+[ ! -c "/dev/$GETTY" ] && echo "$0: /dev/$GETTY is not a terminal"
 
 # defaults
 GETTY_BAUD="$1"
-shift
+[ -n "$GETTY_BAUD" ] && shift
+[ -n "$GETTY_BAUD" ] || GETTY_BAUD=38400
 GETTY_TERM="$1"
-shift
+[ -n "$GETTY_TERM" ] && shift
+[ -n "$GETTY_TERM" ] || GETTY_TERM=linux
 GETTY_ARGS=$*
 
 [ "$GETTY" = tty1 ] && GETTY_ARGS="$GETTY_ARGS --noclear"
-
-[ -n "$GETTY_TERM" ] || GETTY_TERM=linux
-[ -n "$GETTY_BAUD" ] || GETTY_BAUD=38400
 
 # read config, which may override the above vars
 [ -r "/etc/dinit.d/config/agetty-$GETTY.conf" ] && . "/etc/dinit.d/config/agetty-$GETTY.conf"
