@@ -3,7 +3,7 @@
 mountpoint -q /sys                 || mount -t sysfs sys /sys -o nosuid,noexec,nodev
 mountpoint -q /sys/kernel/debug    || mount -n -t debugfs debugfs /sys/kernel/debug -o nosuid,noexec,nodev
 mountpoint -q /sys/kernel/config   || mount -n -t configfs configfs /sys/kernel/config -o nosuid,noexec,nodev
-mountpoint -q /sys/fs/pstore       || mount -n -t pstore pstore /sys/fs/pstore -o nosuid,noexec,nodev
+mountpoint -q /sys/fs/pstore       || mount -t pstore pstore /sys/fs/pstore -o nosuid,noexec,nodev
 mountpoint -q /sys/fs/fuse/connections || \
 	mount -n -t fusectl fusectl /sys/fs/fuse/connections -o nosuid,noexec,nodev
 mountpoint -q /sys/kernel/security || mount -n -t securityfs securityfs /sys/kernel/security
