@@ -1,4 +1,4 @@
 type       = scripted
-command    = /usr/lib/artix/mount-cgroups.sh
+command    = /bin/bash /usr/lib/artix/mount-cgroups.sh
 restart    = false
 depends-on = pseudofs
