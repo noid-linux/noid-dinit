@@ -28,7 +28,7 @@ if [ -r /proc/cmdline ]; then
     done
 fi
 
-case "$2" in
+case "$1" in
     "all")
         fsck -A -R -C -t noopts=_netdev $FORCEARG $FIXARG
         FSCKRET=$?
