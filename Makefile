@@ -10,7 +10,7 @@ DINITSRVDIR   ?= $(LIBDIR)/dinit.d
 DINITCNFDIR   ?= $(SYSCONFDIR)/dinit.d
 SEEDRNGDIR    ?= $(LOCALSTATEDIR)/lib
 
-BIN_PROGRAMS = modules-load seedrng
+BIN_PROGRAMS = modules-load dbus-wait-for seedrng
 
 MANPAGES = modules-load.8
 
@@ -105,10 +105,10 @@ TTY_SERVICES = \
 CFLAGS ?= -O2 -pipe
 
 CFLAGS += -Wall -Wextra -pedantic
-CFLAGS += -DLOCALSTATEDIR="\"$(SEEDRNGDIR)\""
 
-seedrng: bin/seedrng.c
-	$(CC) -o bin/seedrng bin/seedrng.c $(CFLAGS)
+all: bin/dbus-wait-for.c bin/seedrng.c
+	$(CC) -o bin/dbus-wait-for bin/dbus-wait-for.c $(CFLAGS) `pkg-config --libs --cflags dbus-1`
+	$(CC) -o bin/seedrng bin/seedrng.c $(CFLAGS) -DLOCALSTATEDIR="\"$(SEEDRNGDIR)\""
 
 install:
 	install -d $(DESTDIR)$(BINDIR)
@@ -163,5 +163,6 @@ install:
 
 clean:
 	rm -f bin/seedrng
+	rm -f bin/dbus-wait-for
 
-.PHONY: clean
+.PHONY: all clean
