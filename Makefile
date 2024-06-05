@@ -14,12 +14,14 @@ BIN_PROGRAMS = modules-load dbus-wait-for seedrng
 
 MANPAGES = modules-load.8
 
-CONF_FILES = \
-	agetty-default.conf \
-	console.conf \
+BOOTCONF_FILES = \
 	hwclock.conf \
 	rc.local \
 	rc.shutdown
+
+CONF_FILES = \
+	console.conf \
+	agetty-default.conf
 
 SERVICEDIR = boot.d
 
@@ -126,6 +128,9 @@ install:
 	# placeholder
 	touch $(DESTDIR)$(DINITCNFDIR)/boot.d/.KEEP
 	# config files
+	for conf in $(BOOTCONF_FILES); do \
+		install -m 644 config/$$conf $(DESTDIR)$(SYSCONFDIR); \
+	done
 	for conf in $(CONF_FILES); do \
 		install -m 644 config/$$conf $(DESTDIR)$(DINITCNFDIR)/config; \
 	done
