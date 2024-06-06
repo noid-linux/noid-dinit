@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# Source /etc/profile.d/locale.sh, which in turn sources /etc/locale.conf
+. /etc/profile.d/locale.sh
+
+# Override the locale if defined in cmdline, mimic systemd's behavior.
+if [ -r /proc/cmdline ]; then
+    for x in $(cat /proc/cmdline); do
+        case "$x" in
+            locale.LANG=*)              export LANG="${x#*=}"              ;;
+            locale.LANGUAGE=*)          export LANGUAGE="${x#*=}"          ;;
+            locale.LC_CTYPE=*)          export LC_CTYPE="${x#*=}"          ;;
+            locale.LC_NUMERIC=*)        export LC_NUMERIC="${x#*=}"        ;;
+            locale.LC_TIME=*)           export LC_TIME="${x#*=}"           ;;
+            locale.LC_COLLATE=*)        export LC_COLLATE="${x#*=}"        ;;
+            locale.LC_MONETARY=*)       export LC_MONETARY="${x#*=}"       ;;
+            locale.LC_MESSAGES=*)       export LC_MESSAGES="${x#*=}"       ;;
+            locale.LC_PAPER=*)          export LC_PAPER="${x#*=}"          ;;
+            locale.LC_NAME=*)           export LC_NAME="${x#*=}"           ;;
+            locale.LC_ADDRESS=*)        export LC_ADDRESS="${x#*=}"        ;;
+            locale.LC_TELEPHONE=*)      export LC_TELEPHONE="${x#*=}"      ;;
+            locale.LC_MEASUREMENT=*)    export LC_MEASUREMENT="${x#*=}"    ;;
+            locale.LC_IDENTIFICATION=*) export LC_IDENTIFICATION="${x#*=}" ;;
+        esac
+    done
+fi

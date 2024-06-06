@@ -12,7 +12,7 @@ SEEDRNGDIR    ?= $(LOCALSTATEDIR)/lib
 
 BIN_PROGRAMS = modules-load dbus-wait-for seedrng
 
-MANPAGES = modules-load.8
+MANPAGES = locale.conf.5 modules-load.8
 
 BOOTCONF_FILES = \
 	hwclock.conf \
@@ -119,10 +119,14 @@ bin/seedrng: bin/seedrng.c
 
 bin: bin/dbus-wait-for bin/seedrng
 
+# there has to be a better way
 man/modules-load.8: man/modules-load.8.scd
 	scdoc < $< > $@
 
-man: man/modules-load.8
+man/locale.conf.5: man/locale.conf.5.scd
+	scdoc < $< > $@
+
+man: man/locale.conf.5 man/modules-load.8
 
 install:
 	install -d $(DESTDIR)$(BINDIR)
@@ -183,5 +187,6 @@ clean:
 	rm -f bin/seedrng
 	rm -f bin/dbus-wait-for
 	rm -f man/*.8
+	rm -f man/*.5
 
 .PHONY: all clean

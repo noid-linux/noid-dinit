@@ -1,4 +1,4 @@
 type       = scripted
-command    = /bin/sh /etc/profile.d/locale.sh
+command    = /usr/lib/dinit/locale
 restart    = false
 depends-on = early-root-rw.target
