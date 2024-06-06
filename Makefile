@@ -17,10 +17,8 @@ MAN8 = modules-load.8
 
 BOOTCONF_FILES = \
 	hwclock.conf \
-	locale.conf \
 	rc.local \
-	rc.shutdown \
-	vconsole.conf
+	rc.shutdown
 
 CONF_FILES = \
 	console.conf \
