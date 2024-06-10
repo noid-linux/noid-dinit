@@ -1,0 +1,11 @@
+#!/bin/sh
+
+[ ! -f /etc/rc.local ]    && install -m 755 /dev/null /etc/rc.local
+[ ! -f /etc/rc.shutdown ] && install -m 755 /dev/null /etc/rc.shutdown
+
+case "$1" in
+    startup)  [ -x /etc/rc.local ]    && /etc/rc.local ;;
+    shutdown) [ -x /etc/rc.shutdown ] && /etc/rc.shutdown ;;
+esac
+
+exit 0

@@ -15,11 +15,6 @@ BIN_PROGRAMS = modules-load dbus-wait-for seedrng
 MAN5 = locale.conf.5 vconsole.conf.5
 MAN8 = modules-load.8
 
-BOOTCONF_FILES = \
-	hwclock.conf \
-	rc.local \
-	rc.shutdown
-
 CONF_FILES = \
 	console.conf \
 	agetty-default.conf
@@ -95,6 +90,7 @@ SCRIPTS = \
 	hwclock \
 	locale \
 	pseudofs \
+	rclocal \
 	tmpfiles \
 	udevd \
 	vconsole
@@ -148,9 +144,7 @@ install:
 	# placeholder
 	touch $(DESTDIR)$(DINITCNFDIR)/boot.d/.KEEP
 	# config files
-	for conf in $(BOOTCONF_FILES); do \
-		install -m 644 config/$$conf $(DESTDIR)$(SYSCONFDIR); \
-	done
+	install -m 644 config/hwclock.conf $(DESTDIR)$(SYSCONFDIR)/hwclock.conf; \
 	for conf in $(CONF_FILES); do \
 		install -m 644 config/$$conf $(DESTDIR)$(DINITCNFDIR)/config; \
 	done
