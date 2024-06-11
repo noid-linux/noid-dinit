@@ -13,7 +13,7 @@ if [ -r /proc/cmdline ]; then
     done
 fi
 
-case "$2" in
+case "$1" in
     "keyboard") [ -n "$KEYMAP" ] && loadkeys -q -u "${KEYMAP}" ;;
     "console")
         TTYS=${TTYS:-6}
