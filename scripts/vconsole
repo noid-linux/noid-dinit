@@ -5,10 +5,10 @@
 if [ -r /proc/cmdline ]; then
     for x in $(cat /proc/cmdline); do
         case "$x" in
-            vconsole.keymap=*)      KEYMAP="${KEYMAP}"           ;;
-            vconsole.font=*)        FONT="${FONT}"               ;;
-            vconsole.font_map=*)    FONT_MAP="${FONT_MAP}"       ;;
-            vconsole.font_unimap=*) FONT_UNIMAP="${FONT_UNIMAP}" ;;
+            vconsole.keymap=*)      KEYMAP="${x#*=}"      ;;
+            vconsole.font=*)        FONT="${x#*=}"        ;;
+            vconsole.font_map=*)    FONT_MAP="${x#*=}"    ;;
+            vconsole.font_unimap=*) FONT_UNIMAP="${x#*=}" ;;
         esac
     done
 fi
