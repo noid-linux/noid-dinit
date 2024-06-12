@@ -1,8 +1,8 @@
 type       = internal
 depends-on = early-fs-local.target
-depends-on = early-console.target
 depends-on = net-lo
 depends-on = hostname
+waits-for  = early-console.target
 waits-for  = swap
 waits-for  = random-seed
 waits-for  = sysctl
