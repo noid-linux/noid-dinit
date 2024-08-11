@@ -19,7 +19,14 @@ chmod 755 /etc/rc.shutdown
 }
 
 case "$1" in
-    startup)  [ -x /etc/rc.local ]    && /etc/rc.local ;;
+    startup)
+        # Check if branding is installed
+        if [ -d /etc/local.d ]; then
+            for file in /etc/local.d/*; do
+                [ -x "$file" ] && "$file"
+            done
+        fi
+        [ -x /etc/rc.local ]    && /etc/rc.local ;;
     shutdown) [ -x /etc/rc.shutdown ] && /etc/rc.shutdown ;;
 esac
 
