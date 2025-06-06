@@ -1,4 +1,4 @@
 type       = scripted
-command    = /usr/bin/udevadm trigger --action=add
+command    = /usr/lib/dinit/udev-trigger
 restart    = false
 depends-on = udevd-early

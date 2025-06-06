@@ -1,0 +1,21 @@
+#!/bin/sh
+export PATH=/usr/bin
+# from openrc-extra/udev/init.d/udev-trigger:
+dev_root_link() {
+	local RULESDIR
+	RULESDIR=/run/udev/rules.d
+	[ -d $RULESDIR ] || mkdir -p $RULESDIR
+	eval $(udevadm info --export --export-prefix=ROOT_ --device-id-of-file=/ ||
+		true)
+	[ "$ROOT_MAJOR" -a "$ROOT_MINOR" ] || return 0
+
+	# btrfs filesystems have bogus major/minor numbers
+	[ "$ROOT_MAJOR" != 0 ] || return 0
+
+	echo 'ACTION=="add|change", SUBSYSTEM=="block", ENV{MAJOR}=="'$ROOT_MAJOR'", ENV{MINOR}=="'$ROOT_MINOR'", SYMLINK+="root"' > $RULESDIR/61-dev-root-link.rules
+}
+dev_root_link
+udevadm trigger --attr-match=dev --action=add
+udevadm trigger --subsystem-match=net --action=add
+udevadm trigger --type=subsystems --action=add
+udevadm trigger --type=devices --action=add

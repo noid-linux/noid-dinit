@@ -93,6 +93,7 @@ SCRIPTS = \
 	rclocal \
 	tmpfiles \
 	udevd \
+	udev-trigger \
 	vconsole
 
 TTY_SERVICES = \
