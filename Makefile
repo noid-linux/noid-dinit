@@ -77,6 +77,7 @@ TARGETS = \
 	local.target \
 	login.target \
 	network.target \
+	network-online.target \
 	pre-local.target \
 	pre-network.target \
 	time-sync.target
@@ -90,6 +91,7 @@ SCRIPTS = \
 	hostname \
 	hwclock \
 	locale \
+	net-online \
 	pseudofs \
 	rclocal \
 	tmpfiles \

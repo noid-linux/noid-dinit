@@ -1,0 +1,6 @@
+# For services that need network to be online, depend on this.
+
+type       = scripted
+command    = /usr/lib/dinit/net-online
+restart    = false
+depends-on = network.target

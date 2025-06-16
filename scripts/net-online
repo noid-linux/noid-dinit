@@ -1,0 +1,36 @@
+#!/bin/sh
+# Copyright (c) 2015 The OpenRC Authors.
+# See the Authors file at
+# https://github.com/OpenRC/openrc/blob/HEAD/AUTHORS
+#
+# This file was adapted from OpenRC with the copyright notice attached above.
+# The terms are the same between this repo and the OpenRC repo, see ../COPYING
+# file for details.
+
+get_interfaces() {
+    for ifname in /sys/class/net/*; do
+        [ -h "${ifname}" ] || continue
+        read iftype < ${ifname}/type
+        [ "$iftype" = 1 ] && printf "%s " ${ifname##*/}
+    done
+}
+
+interfaces=${interfaces:-$(get_interfaces)}
+# Timeout should be handled by dinit direcly
+# Failure to break from loop = offline
+while true; do
+    carriers=0
+    configured=0
+    ifcount=0
+    for dev in ${interfaces}; do
+        : $((ifcount += 1))
+        read carrier < /sys/class/net/$dev/carrier 2>/dev/null ||
+            carrier=
+        [ "$carrier" = 1 ] && : $((carriers += 1))
+        read operstate < /sys/class/net/$dev/operstate 2>/dev/null ||
+            operstate=
+        [ "$operstate" = up ] && : $((configured += 1))
+    done
+    [ $configured -eq $ifcount ] && [ $carriers -ge 1 ] && break
+    sleep 1
+done
