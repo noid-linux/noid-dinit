@@ -34,22 +34,15 @@ SERVICES = \
 	hostname \
 	hwclock \
 	kmod-static-nodes \
-	loginready \
 	locale \
-	misc \
 	modules \
-	mount \
-	mount-all \
 	net-lo \
 	network \
 	network-pre \
 	pseudofs \
 	random-seed \
-	rclocal \
 	recovery \
 	root-ro \
-	root-rw \
-	setup \
 	single \
 	swap \
 	sysctl \
@@ -61,8 +54,7 @@ SERVICES = \
 	udevd \
 	udevd-early \
 	udev-settle \
-	udev-trigger \
-	vconsole
+	udev-trigger
 
 TARGETS = \
 	early-console.target \
