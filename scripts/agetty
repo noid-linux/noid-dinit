@@ -1,5 +1,5 @@
 #!/bin/sh
-# Originally written by Daniel "q66" Kolesa for nyagetty on Chimera Linux
+# Originally written by q66 for nyagetty on Chimera Linux
 # nyagetty was licensed under Public Domain or the following terms:
 #
 # Permission to use, copy, modify, and/or distribute this software for
@@ -33,9 +33,9 @@ PREV_CONSOLES=
 # add dependency links for all possible requested consoles
 ACTIVE_SERVICES=$(
     for tty in $ACTIVE_CONSOLES; do
-        tty=${tty##*/}
+        tty=getty@${tty##*/}
         [ -f /etc/dinit.d/$tty ] || continue
-        dinitctl add-dep milestone getty $tty > /dev/null
+        dinitctl add-dep milestone agetty $tty > /dev/null
         echo $tty
     done
 )
@@ -48,7 +48,7 @@ for otty in $PREV_CONSOLES; do
             break
         fi
     done
-    [ -n "$otty" ] && dinitctl rm-dep milestone getty $otty > /dev/null
+    [ -n "$otty" ] && dinitctl rm-dep milestone agetty $otty > /dev/null
 done
 
 rm -f /run/agetty-active

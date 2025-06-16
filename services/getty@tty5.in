@@ -1,0 +1,3 @@
+@include @DINITSRVDIR@/getty
+inittab-id = 5
+inittab-line = tty5

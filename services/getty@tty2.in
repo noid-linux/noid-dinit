@@ -1,0 +1,3 @@
+@include @DINITSRVDIR@/getty
+inittab-id = 2
+inittab-line = tty2

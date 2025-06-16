@@ -22,6 +22,7 @@ CONF_FILES = \
 SERVICEDIR = boot.d
 
 SERVICES = \
+	agetty \
 	binfmt \
 	boot \
 	cgroups \
@@ -97,12 +98,12 @@ SCRIPTS = \
 	vconsole
 
 TTY_SERVICES = \
-	tty1 \
-	tty2 \
-	tty3 \
-	tty4 \
-	tty5 \
-	tty6
+	getty@tty1 \
+	getty@tty2 \
+	getty@tty3 \
+	getty@tty4 \
+	getty@tty5 \
+	getty@tty6
 
 CFLAGS ?= -O2 -pipe
 
@@ -174,10 +175,11 @@ install:
 	done
 	# getty services
 	for srv in $(TTY_SERVICES); do \
-		install -m 644 services/$$srv $(DESTDIR)$(DINITCNFDIR); \
+		sed "s|@DINITSRVDIR[@]|$(DINITSRVDIR)|g" services/$$srv.in > $(DESTDIR)$(DINITCNFDIR)/$$srv; \
+		chmod 644 $(DESTDIR)$(DINITCNFDIR)/$$srv; \
 	done
 	# install default service
-	ln -sf ../getty $(DESTDIR)$(DINITSRVDIR)/boot.d/getty
+	ln -sf ../agetty $(DESTDIR)$(DINITSRVDIR)/boot.d/agetty
 	ln -sf ../udevd $(DESTDIR)$(DINITSRVDIR)/boot.d/udevd
 	# shutdown hook
 	install -Dm755 misc/shutdown-hook $(DESTDIR)$(LIBDIR)/dinit/shutdown-hook
