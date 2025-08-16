@@ -28,6 +28,7 @@ SERVICES = \
 	boot \
 	cgroups \
 	cleanup \
+	dinit-user-spawn \
 	dmesg \
 	fsck \
 	fsck-root \
@@ -176,6 +177,7 @@ install:
 	# install default service
 	ln -sf ../agetty $(DESTDIR)$(DINITSRVDIR)/boot.d/agetty
 	ln -sf ../udevd $(DESTDIR)$(DINITSRVDIR)/boot.d/udevd
+	ln -sf ../dinit-user-spawn $(DESTDIR)$(DINITSRVDIR)/boot.d/dinit-user-spawn
 	# shutdown hook
 	install -Dm755 misc/shutdown-hook $(DESTDIR)$(LIBDIR)/dinit/shutdown-hook
 	# misc

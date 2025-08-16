@@ -1,0 +1,6 @@
+type            = process
+command         = /usr/bin/dinit-user-spawn
+restart         = true
+log-type        = buffer
+log-buffer-size = 1024000
+depends-on: login-target
