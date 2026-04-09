@@ -1,4 +1,0 @@
-type       = scripted
-command    = /usr/lib/artix/binfmt.sh
-depends-on = early-fs-local.target
-restart    = false

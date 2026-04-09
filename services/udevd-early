@@ -4,4 +4,3 @@ stop-command    = /usr/bin/sh -c "/usr/bin/udevadm control -e || :"
 restart         = false
 depends-on      = early-prepare.target
 depends-on      = kmod-static-nodes
-depends-on      = tmpfiles-dev

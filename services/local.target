@@ -3,5 +3,3 @@ command      = /usr/lib/dinit/rclocal startup
 stop-command = /usr/lib/dinit/rclocal shutdown
 restart      = false
 depends-on   = pre-local.target
-depends-on   = tmpfiles-setup
-depends-on   = sysusers
