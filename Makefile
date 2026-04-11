@@ -74,6 +74,7 @@ TARGETS = \
 SCRIPTS = \
 	agetty \
 	agetty-default \
+	cgroups	\
 	cleanup \
 	dmesg \
 	fsck \
