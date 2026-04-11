@@ -24,7 +24,6 @@ SERVICEDIR = boot.d
 
 SERVICES = \
 	agetty \
-	binfmt \
 	boot \
 	cgroups \
 	cleanup \
@@ -47,10 +46,7 @@ SERVICES = \
 	single \
 	swap \
 	sysctl \
-	sysusers \
 	system \
-	tmpfiles-dev \
-	tmpfiles-setup \
 	tmpfs \
 	udevd \
 	udevd-early \
@@ -87,7 +83,6 @@ SCRIPTS = \
 	net-online \
 	pseudofs \
 	rclocal \
-	tmpfiles \
 	udevd \
 	udev-trigger \
 	vconsole

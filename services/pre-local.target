@@ -6,6 +6,5 @@ depends-on = hostname
 waits-for  = swap
 waits-for  = random-seed
 waits-for  = sysctl
-waits-for  = binfmt
 waits-for  = hwclock
 waits-for  = locale
