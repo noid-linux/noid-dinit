@@ -51,7 +51,7 @@ SERVICES = \
 	system \
 	tmpfiles-dev \
 	tmpfiles-setup \
-	tmpfs \
+	tmpmount \
 	udevd \
 	udevd-early \
 	udev-settle \
@@ -88,7 +88,7 @@ SCRIPTS = \
 	pseudofs \
 	rclocal \
 	tmpfiles \
-	tmpfs \
+	tmpmount \
 	udevd \
 	udev-trigger \
 	vconsole

@@ -1,4 +1,4 @@
 type      = scripted
-command   = /usr/lib/dinit/tmpfs
+command   = /usr/lib/dinit/tmpmount
 restart   = false
 after: early-fs-fstab.target

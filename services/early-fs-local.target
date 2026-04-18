@@ -1,4 +1,5 @@
 type       = internal
-depends-on = early-fs-pre.target
-waits-for  = early-root-rw.target
-waits-for  = early-fs-fstab.target
+depends-on: early-fs-pre.target
+waits-for: early-root-rw.target
+waits-for: early-fs-fstab.target
+waits-for: tmpmount
