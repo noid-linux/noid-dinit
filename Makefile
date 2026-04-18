@@ -88,6 +88,7 @@ SCRIPTS = \
 	pseudofs \
 	rclocal \
 	tmpfiles \
+	tmpfs \
 	udevd \
 	udev-trigger \
 	vconsole
