@@ -1,9 +1,19 @@
 #!/bin/sh
 
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin
+export DM_DISABLE_UDEV=1
+export LVM_SUPPRESS_FD_WARNINGS=1
 
-# check if cryptsetup is enabled
-[ -x /usr/lib/dinit/cryptsetup ] && CRYPT=1
+deactivate_vgs() {
+    _group=${1:-All}
+    if [ -x /sbin/vgchange -o -x /bin/vgchange ]; then
+        vgs=$(vgs|wc -l)
+        if [ $vgs -gt 0 ]; then
+            echo "Deactivating $_group LVM Volume Groups..."
+            vgchange -an
+        fi
+    fi
+}
 
 echo "Disabling swap"
 swapoff -a
@@ -14,15 +24,11 @@ mount -n -o remount,ro /
 echo "Syncing disks"
 sync
 
-export DM_DISABLE_UDEV=1
-
-echo "Locking crypt devices"
-[ -n "$CRYPT" ] && /usr/lib/dinit/cryptsetup remaining stop
-
-echo "Disabling LVM"
-# Suppress FD warnings since we only do this on shutdown
-export LVM_SUPPRESS_FD_WARNINGS=1
-[ -x /usr/bin/vgchange ] && vgchange -an
-
-echo "Locking remaining crypt devices"
-[ -n "$CRYPT" ] && /usr/lib/dinit/cryptsetup early stop
+deactivate_vgs
+if [ -x /sbin/dmsetup -o -x /bin/dmsetup ]; then
+	echo "Deactivating Crypt Volumes"
+	for v in $(dmsetup ls --target crypt --exec "dmsetup info -c --noheadings -o open,name"); do
+		[ ${v%%:*} = "0" ] && cryptsetup close ${v##*:}
+	done
+	deactivate_vgs "Crypt"
+fi
