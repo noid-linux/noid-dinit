@@ -33,7 +33,7 @@ SERVICES = \
 	getty \
 	hostname \
 	hwclock \
-	kmod-static-nodes \
+	static-devnodes \
 	locale \
 	modules \
 	net-lo \
@@ -86,6 +86,7 @@ SCRIPTS = \
 	pseudofs \
 	rclocal \
 	root-ro \
+	static-devnodes \
 	udevd \
 	udev-trigger \
 	vconsole
