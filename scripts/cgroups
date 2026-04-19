@@ -1,3 +1,14 @@
 #!/bin/sh
-mountpoint -q /sys/fs/cgroup && exit 0
-mount -t cgroup2 none /sys/fs/cgroup
+
+_cgroupv2="/sys/fs/cgroup"
+
+mkdir -p "$_cgroupv2"
+mountpoint -q "$_cgroupv2" || \
+    mount -t cgroup2 -o nsdelegate cgroup2 "$_cgroupv2"
+
+read -r _controllers < "$_cgroupv2/cgroup.controllers"
+_active=
+for _c in $_controllers; do
+	_active="$_active +$_c"
+done
+printf "%s" "$_active" > "$_cgroupv2/cgroup.subtree_control"
