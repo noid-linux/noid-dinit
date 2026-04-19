@@ -1,6 +1,9 @@
 #!/bin/sh
 # modules-load [-n] [-v] - modules-load.d(5) compatible kernel module loader
 
+# Do not try to load modules if kernel does not support them.
+[ ! -e /proc/modules ] && exit 0
+
 export PATH=/bin:/sbin
 
 {
