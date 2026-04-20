@@ -45,6 +45,7 @@ SERVICES = \
 	random-seed \
 	recovery \
 	root-ro \
+	sbin-merge \
 	single \
 	swap \
 	sysctl \
@@ -89,6 +90,7 @@ SCRIPTS = \
 	pseudofs \
 	rclocal \
 	root-ro \
+	sbin-merge \
 	static-devnodes \
 	udevd \
 	udev-trigger \

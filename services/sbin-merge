@@ -1,0 +1,5 @@
+type       = scripted
+command    = /usr/lib/dinit/sbin-merge
+restart    = false
+depends-on = early-root-rw.target
+before     = early-devices.target
