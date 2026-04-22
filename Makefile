@@ -92,6 +92,7 @@ SCRIPTS = \
 	root-ro \
 	sbin-merge \
 	static-devnodes \
+	sysctl \
 	udevd \
 	udev-trigger \
 	vconsole
