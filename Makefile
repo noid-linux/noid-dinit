@@ -188,6 +188,7 @@ install:
 	install -Dm644 misc/dinit.logrotate $(DESTDIR)$(SYSCONFDIR)/logrotate.d/dinit
 	install -Dm644 misc/dinit-rc.tmpfiles $(DESTDIR)$(LIBDIR)/tmpfiles.d/dinit-rc.conf
 	install -Dm644 misc/crypt.awk $(DESTDIR)$(DINITSRVDIR)/crypt.awk
+	install -Dm644 misc/dracut.conf $(DESTDIR)$(LIBDIR)/dracut/10-dinit-noid.conf
 
 clean:
 	rm -f bin/seedrng
