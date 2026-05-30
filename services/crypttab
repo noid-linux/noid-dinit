@@ -3,7 +3,5 @@ command       = /usr/lib/dinit/crypttab
 restart       = false
 start-timeout = 0
 depends-on    = early-devices.target
-depends-on    = early-keyboard.target
 depends-ms    = fsck-root
-before        = early-fs-pre.target
 options       = starts-on-console

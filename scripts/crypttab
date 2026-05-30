@@ -2,7 +2,7 @@
 
 [ -r /etc/crypttab ] || exit 0
 
-awk -f /usr/lib/dinit/crypt.awk /etc/crypttab
+awk -f /usr/lib/dinit.d/crypt.awk /etc/crypttab
 
 if [ -x /sbin/vgchange -o -x /bin/vgchange ]; then
     vgchange --sysinit -a ay

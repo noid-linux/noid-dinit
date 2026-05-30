@@ -2,3 +2,4 @@
 
 type        = internal
 depends-on  = early-devices.target
+depends-on  = crypttab
