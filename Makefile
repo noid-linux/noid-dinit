@@ -87,6 +87,7 @@ SCRIPTS = \
 	net-online \
 	pseudofs \
 	rclocal \
+	remount \
 	tmpfiles \
 	tmpmount \
 	udevd \

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+fstype="$(findmnt -no FSTYPE "$1")"
+
+case "$fstype" in
+    overlay|squashfs) exit 0 ;;
+    *)                mount -o remount,"$2" "$1" ;;
+esac

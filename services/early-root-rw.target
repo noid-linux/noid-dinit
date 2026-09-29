@@ -1,5 +1,5 @@
 type       = scripted
-command    = /bin/mount -o remount,rw /
+command    = /usr/lib/dinit/remount / rw
 restart    = false
 options    = starts-rwfs
 depends-on = fsck-root
