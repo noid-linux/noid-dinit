@@ -1,4 +1,0 @@
-#!/bin/sh
-# TODO: find a less stupid way to deal with overlay fs
-findmnt -n -o FSTYPE / | grep -q overlay && exit 0
-/bin/mount -o remount,rw /

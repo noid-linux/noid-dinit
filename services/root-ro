@@ -1,3 +1,3 @@
 type    = scripted
-command = /usr/lib/dinit/root-ro
+command = /usr/lib/dinit/remount / ro,rshared
 restart = false

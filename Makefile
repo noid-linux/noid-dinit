@@ -80,7 +80,6 @@ SCRIPTS = \
 	cleanup \
 	crypttab \
 	dmesg \
-	early-root-rw \
 	fsck \
 	hostname \
 	hwclock \
@@ -88,7 +87,7 @@ SCRIPTS = \
 	net-online \
 	pseudofs \
 	rclocal \
-	root-ro \
+	remount \
 	sbin-merge \
 	static-devnodes \
 	udevd \
